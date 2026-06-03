@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Inventario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Sistema de Inventario</h1>
+
+        <div class="formulario">
+            <div>
+                <label>Código:</label>
+                <input type="text" id="codigo">
+            </div>
+
+            <div>
+                <label>Producto:</label>
+                <input type="text" id="producto">
+            </div>
+
+            <div>
+                <label>Categoría:</label>
+                <select id="categoria">
+                    <option value="">Seleccione</option>
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Oficina">Oficina</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Limpieza">Limpieza</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Precio:</label>
+                <input type="number" id="precio">
+            </div>
+
+            <div>
+                <label>Cantidad:</label>
+                <input type="number" id="cantidad">
+            </div>
+        </div>
+
+        <div class="botones">
+            <button id="btnGuardar">Guardar producto</button>
+            <button id="btnLimpiar">Limpiar</button>
+            <button id="btnPDF">Generar Reporte PDF</button>
+        </div>
+
+        <h2>Listado de productos</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaProductos"></tbody>
+        </table>
+
+        <div class="resumen">
+            <h2>Total del inventario: L. <span id="totalInventario">0.00</span></h2>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    
+    <script src="renderer.js"></script>
+</body>
+</html>
