@@ -1,5 +1,5 @@
 const codigo = document.getElementById('codigo');
-const producto = document.getElementById('producto'); // CORREGIDO: Coincide con el id="producto" del HTML
+const producto = document.getElementById('producto');
 const cantidad = document.getElementById('cantidad');
 const precio = document.getElementById('precio');
 const categoria = document.getElementById('categoria');
@@ -14,9 +14,6 @@ const totalInventario = document.getElementById('totalInventario');
 let productos = [];
 let indiceEditar = null;
 
-// ==========================================
-// 1. EVENTO PARA GUARDAR O ACTUALIZAR
-// ==========================================
 btnGuardar.addEventListener('click', function () {
     if (codigo.value.trim() === '' ||
         producto.value.trim() === '' || 
@@ -52,9 +49,6 @@ btnGuardar.addEventListener('click', function () {
     limpiarFormulario();
 });
 
-// ==========================================
-// 2. FUNCIÓN PARA RENDERIZAR LA TABLA
-// ==========================================
 function mostrarProductos() {
     tablaProductos.innerHTML = '';
     let sumaInventario = 0;
@@ -82,16 +76,12 @@ function mostrarProductos() {
     totalInventario.textContent = sumaInventario.toFixed(2);
 }
 
-// ==========================================
-// 3. GENERAR REPORTE EN PDF (USANDO WINDOW.JSPDF NATIVO)
-// ==========================================
 btnPDF.addEventListener('click', function () {
     if (productos.length === 0) {
         alert('No hay productos en el inventario para generar un reporte.');
         return;
     }
 
-    // Acceso seguro al objeto global cargado por el CDN en el HTML
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
@@ -137,17 +127,14 @@ btnPDF.addEventListener('click', function () {
     doc.save('Reporte_Inventario.pdf');
 });
 
-// ==========================================
-// 4. FUNCIONES COMPLEMENTARIAS
-// ==========================================
 function cargarParaEditar(index) {
     indiceEditar = index;
     const prod = productos[index];
     
     codigo.value = prod.codigo;
-    producto.value = prod.nombre; // CORREGIDO: Mapeo correcto al input
+    producto.value = prod.nombre;
     cantidad.value = prod.cantidad;
-    precio.value = prod.precio;   // CORREGIDO: Asignación directa al value del input
+    precio.value = prod.precio;
     categoria.value = prod.categoria;
     
     btnGuardar.textContent = 'Actualizar';
